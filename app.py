@@ -14,10 +14,14 @@ def predict():
     if not message:
         return render_template("index.html", result="Please enter a message")
 
-    result = predict_message(message)   # ✅ now it's safe
+    result, score, explanation = predict_message(message)
 
-    return render_template("index.html", result=result,score=85,
-                       explanation="Contains words like 'urgent', 'click here'")
+    return render_template(
+        "index.html",
+        result=result,
+        score=score,
+        explanation=explanation
+    )
 
 if __name__ == "__main__":
     import os
